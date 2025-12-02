@@ -12,15 +12,16 @@ class Day2 : DayBase
 public:
     explicit Day2(std::string filename);
 
-    int GetAnswerPart1();
+    std::string GetAnswerPart1();
     int GetAnswerPart2();
 
     void TestData() const;
 private:
     void ProcessTextData();
+    static std::string AddTwoStringsAsNumbers(std::string str1, std::string str2);
 
     std::vector<std::string> m_textData;
-    std::vector<std::array<int, 2>> m_data;
+    std::vector<std::array<std::string, 2>> m_data;
 };
 
 
