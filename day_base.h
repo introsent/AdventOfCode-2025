@@ -13,6 +13,7 @@ public:
     explicit DayBase(std::string filename);
 protected:
     [[nodiscard]] std::vector<std::string> GetPerLineTextData() const;
+    [[nodiscard]] std::vector<std::string> GetPerDelimiterTextData(std::string delimiter) const;
 private:
     std::string m_filename;
 };
