@@ -17,39 +17,53 @@ Day2::Day2(std::string filename) : DayBase(std::move(filename))
 
 std::string Day2::GetAnswerPart1()
 {
-    std::string answer;
+    return Solve(
+            [&](const std::string& id, std::string& answer)
+            {
+                if (id.size() % 2 == 0)
+                {
+                    int middle = id.size() / 2;
+                    std::string idPart1 = id.substr(0, middle);
+                    std::string idPart2 = id.substr(middle, middle);
 
-    std::for_each(std::execution::par, m_data.begin(), m_data.end(),
-          [&answer](const std::array<std::string, 2>& ids)
-          {
-              std::string id = ids[0];
-
-              while (true)
-              {
-                  if (id.size() % 2 == 0)
-                  {
-                      int middle = id.size() / 2;
-                      std::string idPart1 = id.substr(0, middle);
-                      std::string idPart2 = id.substr(middle, middle);
-
-                      if (idPart1 == idPart2)
-                      {
-                          answer = AddTwoStringsAsNumbers(answer, id);
-                      }
-                  }
-
-                  if (id == ids[1])
-                      break;
-
-                  id = AddTwoStringsAsNumbers(id, "1");
-              }
-          });
-    return answer;
+                    if (idPart1 == idPart2)
+                    {
+                        answer = AddTwoStringsAsNumbers(answer, id);
+                    }
+                }
+            }
+        );
 }
 
-int Day2::GetAnswerPart2()
+
+std::string Day2::GetAnswerPart2()
 {
-    return 0;
+    return Solve(
+            [&](const std::string& id, std::string& answer)
+            {
+                int middle = id.size() / 2;
+                if (middle == 0) return;
+
+                for (int i = 1; i <= middle; i++)
+                {
+                    if (id.size() % i != 0) continue;
+                    std::string idPart1 = id.substr(0, i);
+
+                    std::string desiredStr;
+                    int repeatTimes = id.size() / i;
+                    desiredStr.reserve(idPart1.size() * repeatTimes);
+                    for (int j = 0; j < repeatTimes; j++) {
+                        desiredStr.append(idPart1);
+                    }
+
+                    if (desiredStr == id)
+                    {
+                        answer = AddTwoStringsAsNumbers(answer, id);
+                        break;
+                    }
+                }
+            }
+        );
 }
 
 void Day2::TestData() const
@@ -58,6 +72,29 @@ void Day2::TestData() const
     {
         std::cout << ids[0] << " " << ids[1] << std::endl;
     }
+}
+
+std::string Day2::Solve(const CheckerFunction& checker)
+{
+    std::string answer;
+
+    std::for_each(std::execution::par, m_data.begin(), m_data.end(),
+        [&](const std::array<std::string, 2>& ids)
+        {
+            std::string id = ids[0];
+
+            while (true)
+            {
+                checker(id, answer);
+
+                if (id == ids[1])
+                    break;
+
+                id = AddTwoStringsAsNumbers(id, "1");
+            }
+        });
+
+    return answer;
 }
 
 void Day2::ProcessTextData()

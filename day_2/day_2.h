@@ -6,6 +6,7 @@
 #define Y2025_ADVENTOFCODE_DAY_2_H
 #include "../day_base.h"
 #include <array>
+#include <functional>
 
 class Day2 : DayBase
 {
@@ -13,10 +14,13 @@ public:
     explicit Day2(std::string filename);
 
     std::string GetAnswerPart1();
-    int GetAnswerPart2();
+    std::string GetAnswerPart2();
 
     void TestData() const;
 private:
+    using CheckerFunction = std::function<void(const std::string& id, std::string& answer)>;
+
+    std::string Solve(const CheckerFunction& checker);
     void ProcessTextData();
     static std::string AddTwoStringsAsNumbers(std::string str1, std::string str2);
 
