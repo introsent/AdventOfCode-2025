@@ -15,7 +15,7 @@ public:
     explicit Day3(std::string filename);
 
     int GetAnswerPart1();
-    int GetAnswerPart2();
+    std::string GetAnswerPart2();
 
 private:
     std::vector<std::string> m_data;

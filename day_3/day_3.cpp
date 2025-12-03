@@ -29,3 +29,28 @@ int Day3::GetAnswerPart1()
     }
     return answer;
 }
+
+std::string Day3::GetAnswerPart2()
+{
+    std::string answer;
+    for (const auto& joltage : m_data)
+    {
+        int maxElPos = 0;
+        std::string finalStr;
+        for (int possibleSize = 11; possibleSize >= 0; --possibleSize)
+        {
+            auto beginIt = joltage.begin() + maxElPos;
+            auto endIt   = joltage.end() - possibleSize;
+
+            auto maxEl = std::ranges::max_element(beginIt, endIt);
+
+            maxElPos = std::ranges::distance(joltage.begin(), maxEl) + 1;
+
+            finalStr += *maxEl;
+        }
+
+
+        answer = AddTwoStringsAsNumbers(answer, finalStr);
+    }
+    return answer;
+}

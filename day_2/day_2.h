@@ -22,7 +22,6 @@ private:
 
     std::string Solve(const CheckerFunction& checker);
     void ProcessTextData();
-    static std::string AddTwoStringsAsNumbers(std::string str1, std::string str2);
 
     std::vector<std::string> m_textData;
     std::vector<std::array<std::string, 2>> m_data;

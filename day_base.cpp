@@ -3,6 +3,8 @@
 //
 
 #include "day_base.h"
+
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -47,4 +49,35 @@ std::vector<std::string> DayBase::GetPerDelimiterTextData(std::string delimiter)
         }
     }
     return data;
+}
+
+std::string DayBase::AddTwoStringsAsNumbers(std::string str1, std::string str2)
+{
+    std::string result;
+    int carry = 0;
+
+    // Reverse both strings to process from least significant digit
+    std::ranges::reverse(str1);
+    std::ranges::reverse(str2);
+
+    int maxLength = std::max(static_cast<int>(str1.size()), static_cast<int>(str2.size()));
+
+    for (int i = 0; i < maxLength; i++) {
+        int digit1 = (i < str1.size()) ? (str1[i] - '0') : 0;
+        int digit2 = (i < str2.size()) ? (str2[i] - '0') : 0;
+
+        int sum = digit1 + digit2 + carry;
+        carry = sum / 10; // carry
+        result += char(sum % 10) + '0'; // append digit
+    }
+
+    // append remaining carry if there is one
+    if (carry) {
+        result += char(carry + '0');
+    }
+
+    // Reverse the result to get the correct order
+    std::ranges::reverse(result);
+    return result;
+
 }

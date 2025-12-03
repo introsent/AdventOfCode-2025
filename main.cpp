@@ -22,4 +22,5 @@ int main()
 
     auto pDay3 = std::make_unique<Day3>("../day_3/data/data.txt");
     std::cout << "Answer to day 3 part 1: " << pDay3->GetAnswerPart1() << std::endl;
+    std::cout << "Answer to day 3 part 2: " << pDay3->GetAnswerPart2() << std::endl;
 }
