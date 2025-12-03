@@ -9,7 +9,10 @@ add_executable(Y2025_AdventOfCode main.cpp
         day_base.h
         day_base.cpp
         day_2/day_2.cpp
-        day_2/day_2.h)
+        day_2/day_2.h
+        day_3/day_3.cpp
+        day_3/day_3.h
+)
 
 target_include_directories (Y2025_AdventOfCode PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/day_1)
