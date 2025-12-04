@@ -51,6 +51,28 @@ std::vector<std::string> DayBase::GetPerDelimiterTextData(std::string delimiter)
     return data;
 }
 
+std::vector<std::vector<char>> DayBase::GetPerCharacter2dArrayTextData() const
+{
+    std::vector<std::vector<char>> data;
+
+    std::ifstream file(m_filename);
+    if (!file.is_open()) std::cerr << "Error opening file " << m_filename << std::endl;
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::vector<char> chars;
+        std::ranges::for_each(line.begin(), line.end(), [&chars](auto ch)
+        {
+            chars.push_back(std::move(ch));
+        });
+
+        data.emplace_back(std::move(chars));
+    }
+
+    return data;
+}
+
 std::string DayBase::AddTwoStringsAsNumbers(std::string str1, std::string str2)
 {
     std::string result;

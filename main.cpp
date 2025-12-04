@@ -1,10 +1,12 @@
 #include <iostream>
 
-#include "day_1/day_1.h"
 #include <memory>
 
+
+#include "day_1/day_1.h"
 #include "day_2/day_2.h"
 #include "day_3/day_3.h"
+#include "day_4/day_4.h"
 
 int main()
 {
@@ -20,7 +22,14 @@ int main()
     std::cout << "Answer to day 2 part 2: " << pDay2->GetAnswerPart2() << std::endl;
     */
 
+    /* DAY 3
     auto pDay3 = std::make_unique<Day3>("../day_3/data/data.txt");
     std::cout << "Answer to day 3 part 1: " << pDay3->GetAnswerPart1() << std::endl;
     std::cout << "Answer to day 3 part 2: " << pDay3->GetAnswerPart2() << std::endl;
+    */
+
+    auto pDay4 = std::make_unique<Day4>("../day_4/data/data.txt");
+    std::cout << "Answer to day 4 part 1: " << pDay4->GetAnswerPart1() << std::endl;
+    std::cout << "Answer to day 4 part 2: " << pDay4->GetAnswerPart2() << std::endl;
+
 }

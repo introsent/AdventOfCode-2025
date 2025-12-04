@@ -14,6 +14,7 @@ public:
 protected:
     [[nodiscard]] std::vector<std::string> GetPerLineTextData() const;
     [[nodiscard]] std::vector<std::string> GetPerDelimiterTextData(std::string delimiter) const;
+    [[nodiscard]] std::vector<std::vector<char>> GetPerCharacter2dArrayTextData() const;
 
     static std::string AddTwoStringsAsNumbers(std::string str1, std::string str2);
 private:
