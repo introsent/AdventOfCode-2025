@@ -101,5 +101,59 @@ std::string DayBase::AddTwoStringsAsNumbers(std::string str1, std::string str2)
     // Reverse the result to get the correct order
     std::ranges::reverse(result);
     return result;
+}
 
+std::string DayBase::SubtractStringsAsNumbers(std::string str1, std::string str2)
+{
+    std::string result;
+    int carry = 0; // here carry works as "borrow"
+
+    // Reverse both strings to process from least significant digit
+    std::ranges::reverse(str1);
+    std::ranges::reverse(str2);
+
+    int maxLength = std::max(static_cast<int>(str1.size()), static_cast<int>(str2.size()));
+
+    for (int i = 0; i < maxLength; i++) {
+        int digit1 = (i < str1.size()) ? (str1[i] - '0') : 0;
+        int digit2 = (i < str2.size()) ? (str2[i] - '0') : 0;
+
+        // Apply borrow
+        digit1 -= carry;
+
+        int diff;
+        if (digit1 < digit2) {
+            digit1 += 10;
+            carry = 1; // we borrowed from next digit
+        } else {
+            carry = 0;
+        }
+
+        diff = digit1 - digit2;
+
+        result += char(diff + '0');
+    }
+
+    // Reverse into correct order
+    std::ranges::reverse(result);
+
+    // Remove leading zeros (but keep one if result is zero)
+    size_t nonZeroPos = result.find_first_not_of('0');
+    if (nonZeroPos == std::string::npos)
+        return "0";
+
+    return result.substr(nonZeroPos);
+}
+
+int DayBase::compareIntegerStrings(std::string str1, std::string str2)
+{
+    // compare lengths
+    if (str1.size() < str2.size()) return -1;
+    if (str1.size() > str2.size()) return 1;
+
+    // lexicographical compare
+    if (str1 < str2) return -1;
+    if (str1 > str2) return 1;
+
+    return 0;
 }

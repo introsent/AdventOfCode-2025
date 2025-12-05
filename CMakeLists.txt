@@ -14,6 +14,8 @@ add_executable(Y2025_AdventOfCode main.cpp
         day_3/day_3.h
         day_4/day_4.cpp
         day_4/day_4.h
+        day_5/day_5.cpp
+        day_5/day_5.h
 )
 
 target_include_directories (Y2025_AdventOfCode PRIVATE

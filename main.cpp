@@ -7,6 +7,7 @@
 #include "day_2/day_2.h"
 #include "day_3/day_3.h"
 #include "day_4/day_4.h"
+#include "day_5/day_5.h"
 
 int main()
 {
@@ -28,8 +29,15 @@ int main()
     std::cout << "Answer to day 3 part 2: " << pDay3->GetAnswerPart2() << std::endl;
     */
 
+    /* DAY 4
     auto pDay4 = std::make_unique<Day4>("../day_4/data/data.txt");
     std::cout << "Answer to day 4 part 1: " << pDay4->GetAnswerPart1() << std::endl;
     std::cout << "Answer to day 4 part 2: " << pDay4->GetAnswerPart2() << std::endl;
+    */
+
+    auto pDay5 = std::make_unique<Day5>("../day_5/data/data.txt");
+    std::cout << "Answer to day 5 part 1: " << pDay5->GetAnswerPart1() << std::endl;
+    std::cout << "Answer to day 5 part 2: " << pDay5->GetAnswerPart2() << std::endl;
+
 
 }

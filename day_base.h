@@ -17,6 +17,10 @@ protected:
     [[nodiscard]] std::vector<std::vector<char>> GetPerCharacter2dArrayTextData() const;
 
     static std::string AddTwoStringsAsNumbers(std::string str1, std::string str2);
+    static std::string SubtractStringsAsNumbers(std::string str1, std::string str2);
+
+    // Returns: -1 if a < b, 0 if a == b, 1 if a > b
+    static int compareIntegerStrings(std::string str1, std::string str2);
 private:
     std::string m_filename;
 };
